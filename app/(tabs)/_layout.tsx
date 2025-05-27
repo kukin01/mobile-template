@@ -1,5 +1,5 @@
 import { Stack, Tabs } from 'expo-router'
-import { Bus, Car, Home, Plus, Save, Search } from "lucide-react-native"
+import { Bus, Car, Home, Plus, List,User } from "lucide-react-native"
 import React from 'react'
 
 const _Layout = () => {
@@ -23,35 +23,35 @@ const _Layout = () => {
     }}
    >
     <Tabs.Screen
-      name='AddRouteScreen'
+      name='AddExpense'
       options={{
-        title: 'AddRouteScreen',
+        title: 'AddExpense',
         tabBarIcon: ({color, size}) => <Plus size={24} color={color}/>,
         headerShown: false
       }}
     />
 
      <Tabs.Screen
-      name='bookings'
+      name='details'
       options={{
-        title: 'BookingScreen',
-        tabBarIcon: ({color, size}) => <Search size={24} color={color}/>,
-        headerShown: false
-      }}
-    />
-     <Tabs.Screen
-      name='routeDetail'    
-      options={{
-        title: 'RouteDetail',
+        title: 'Details',
         tabBarIcon: ({color, size}) => <Bus size={24} color={color}/>,
         headerShown: false
       }}
     />
     <Tabs.Screen
-      name='routesList'
+      name='expenseList'
       options={{
-        title: 'RoutesList',
-        tabBarIcon: ({color, size}) => <Bus size={24} color={color}/>,
+        title: 'ExpenseList',
+        tabBarIcon: ({color, size}) => <List size={24} color={color}/>,
+        headerShown: false
+      }}
+    />
+    <Tabs.Screen
+      name='ownerExpenses'
+      options={{
+        title: 'OwnerExpenses',
+        tabBarIcon: ({color, size}) => <User size={24} color={color}/>,
         headerShown: false
       }}
     />

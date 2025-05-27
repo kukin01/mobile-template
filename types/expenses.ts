@@ -17,19 +17,12 @@ export interface Schedule {
   dayOfWeek: number; // 0-6 (Sunday-Saturday)
 }
 
-export interface Route {
+export interface Expense {
   id: string;
   name: string;
-  busNumber: string;
+  amount: number;
+  category: string;
   description: string;
-  isActive: boolean;
-  stops: Stop[];
-  schedules: Schedule[];
+  date: string;
 }
 
-export interface TransportState {
-  routes: Route[];
-  selectedRoute: Route | null;
-  loading: boolean;
-  error: string | null;
-} 

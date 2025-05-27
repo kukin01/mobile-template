@@ -61,7 +61,7 @@ export default function LoginScreen() {
         keyboardShouldPersistTaps="handled" // Ensures taps dismiss the keyboard
       >
         <View style={styles.headerContainer}>
-          <Text style={styles.title}>ABCD Ltd</Text>
+          <Text style={styles.title}>XWZ Parking</Text>
           <Text style={styles.subtitle}>Welcome back! Please sign in to your account</Text>
         </View>
 
