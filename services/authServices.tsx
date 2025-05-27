@@ -23,13 +23,13 @@ export const loginUser = async (username: string, password: string): Promise<{ u
     const userData = users[0]; // Since we're querying by username, we should get at most one user
 
     if (!userData) {
-      throw new Error('Invalid username or password');
+      throw new Error('Username not found');
     }
 
     // Simulate password check (in a real app, this would be an API endpoint)
     const storedPassword = userData.password;
     if (!storedPassword || storedPassword !== password) {
-      throw new Error('Invalid username or password');
+      throw new Error('Incorrect password');
     }
 
     // Map API user data to our User interface
@@ -50,8 +50,13 @@ export const loginUser = async (username: string, password: string): Promise<{ u
     };
   } catch (error: unknown) {
     console.error('Login error:', error);
+    // If it's our custom error (username not found or incorrect password), throw it directly
+    if (error instanceof Error && (error.message === 'Username not found' || error.message === 'Incorrect password or username')) {
+      throw error;
+    }
+    // For other errors (like network errors), throw a generic error
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data?.message || 'Login failed');
+      throw new Error('Network error. Please check your connection.');
     }
     throw new Error('An unexpected error occurred');
   }

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
-import { Link } from 'expo-router';
-import { useAuth } from '@/hooks/useAuth';
-import InputField from '@/components/InputField';
 import Button from '@/components/Button';
+import InputField from '@/components/InputField';
+import { useAuth } from '@/hooks/useAuth';
+import { Link } from 'expo-router';
+import React, { useState } from 'react';
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
@@ -111,7 +111,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F8FAFC',
   },
   scrollContainer: {
     flexGrow: 1,
@@ -119,38 +119,61 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerContainer: {
-    marginBottom: 32,
+    marginBottom: 40,
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   title: {
     fontFamily: 'Inter-Bold',
-    fontSize: 32,
-    color: '#3071E8',
-    marginBottom: 8,
+    fontSize: 36,
+    color: '#1E40AF',
+    marginBottom: 12,
+    letterSpacing: 0.5,
   },
   subtitle: {
     fontFamily: 'Inter-Regular',
     fontSize: 16,
-    color: '#666',
+    color: '#64748B',
     textAlign: 'center',
+    lineHeight: 24,
   },
   formContainer: {
     width: '100%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 24,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
   },
   loginButton: {
-    marginTop: 24,
+    marginTop: 32,
+    height: 50,
+    borderRadius: 12,
+    backgroundColor: '#1E40AF',
   },
   footerContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 24,
+    marginTop: 32,
+    paddingTop: 24,
+    borderTopWidth: 1,
+    borderTopColor: '#E2E8F0',
   },
   footerText: {
     fontFamily: 'Inter-Regular',
-    color: '#666',
+    color: '#64748B',
+    fontSize: 15,
   },
   signupText: {
-    fontFamily: 'Inter-Medium',
-    color: '#3071E8',
+    fontFamily: 'Inter-SemiBold',
+    color: '#1E40AF',
+    fontSize: 15,
+    marginLeft: 4,
   },
 });
