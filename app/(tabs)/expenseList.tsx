@@ -1,5 +1,4 @@
-import { getExpenses } from '@/services/expenseServices';
-import { Expense } from '@/types/expenses';
+import { Expense, getExpenses } from '@/services/expenseServices';
 import { useFocusEffect } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -46,7 +45,7 @@ export default function RoutesList() {
 
   const filteredExpenses = expenses.filter(expense =>
     expense.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    expense.amount.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    (expense.amount?.toString() || '').toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const renderExpenseItem = ({ item }: { item: Expense }) => (
@@ -65,7 +64,7 @@ export default function RoutesList() {
             </View>
             <View className="bg-gray-100 px-3 py-1 rounded-full">
               <Text className="text-xs text-gray-600">
-                {new Date(item.date).toLocaleDateString()}
+                {new Date(item.createdAt).toLocaleDateString()}
               </Text>
             </View>
           </View>

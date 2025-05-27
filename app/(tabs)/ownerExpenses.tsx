@@ -1,6 +1,5 @@
 import { useAuth } from '@/hooks/useAuth';
-import { deleteExpense, getExpenses } from '@/services/expenseServices';
-import { Expense } from '@/types/expenses';
+import { deleteExpense, Expense, getExpenses } from '@/services/expenseServices';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Alert, FlatList, Pressable, Text, View } from 'react-native';

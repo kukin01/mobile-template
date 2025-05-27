@@ -21,7 +21,7 @@ describe('Expense Services', () => {
       amount: 200,
       description: 'Test description',
       category: 'Test',
-      date: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
       id: ''
     };
     

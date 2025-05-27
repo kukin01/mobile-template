@@ -1,6 +1,6 @@
 import { FormInput } from '@/components/FormInput';
 import { useAuth } from '@/hooks/useAuth';
-import { addExpense, Expense } from '@/services/expenseServices';
+import { addExpense, Expense, getExpenses } from '@/services/expenseServices';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -29,25 +29,65 @@ export default function AddRouteScreen() {
     mode: 'onChange'
   });
 
+  const checkDuplicateExpense = async (name: string): Promise<boolean> => {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const expenses = await getExpenses();
+      
+      return expenses.some(expense => {
+        const expenseDate = expense.createdAt.split('T')[0];
+        return expense.name.toLowerCase() === name.toLowerCase() && expenseDate === today;
+      });
+    } catch (error) {
+      console.error('Error checking duplicate expense:', error);
+      // If we can't check for duplicates, allow the expense to be added
+      return false;
+    }
+  };
+
   const onSubmit = async (data: AddExpenseForm) => {
     try {
       setIsSubmitting(true);
-      const expenseData: Expense = {
-        ...data,
-        id: '',
-        userId: user?.id,
-        date: new Date().toISOString(),
-      };
       
-      await addExpense(expenseData);
-      Alert.alert('Success', 'Expense added successfully');
-      router.replace('/(tabs)/expenseList');
+      // Check for duplicate expense
+      const isDuplicate = await checkDuplicateExpense(data.name);
+      if (isDuplicate) {
+        Alert.alert(
+          'Duplicate Expense',
+          'An expense with this name was already created today. Do you want to add it anyway?',
+          [
+            { text: 'Cancel', style: 'cancel' },
+            {
+              text: 'Add Anyway',
+              onPress: async () => {
+                await addNewExpense(data);
+              }
+            }
+          ]
+        );
+        return;
+      }
+
+      await addNewExpense(data);
     } catch (error) {
       const err = error as Error;
       Alert.alert('Error', err.message || 'Failed to add expense');
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const addNewExpense = async (data: AddExpenseForm) => {
+    const expenseData: Expense = {
+      ...data,
+      id: '',
+      userId: user?.id,
+      createdAt: new Date().toISOString(),
+    };
+    
+    await addExpense(expenseData);
+    Alert.alert('Success', 'Expense added successfully');
+    router.replace('/(tabs)/expenseList');
   };
 
   return (
