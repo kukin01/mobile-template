@@ -19,7 +19,7 @@ const Onboarding = () => {
             });
             return;
         }
-        router.push('/routes/RoutesList');
+        router.push('/(tabs)/RoutesList');
     }
 
     return (

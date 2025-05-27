@@ -40,7 +40,7 @@ export default function RoutesList() {
   
   const handleRouteSelect = (route: Route) => {
     router.push({
-      pathname: '/routes/routeDetailScreen',
+      pathname: '/(tabs)/routeDetail',
       params: { routeId: route.id }
     });
   };

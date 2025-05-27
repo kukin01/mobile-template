@@ -1,5 +1,5 @@
-import { Tabs } from 'expo-router'
-import { Car, Home, Plus, Save, Search } from "lucide-react-native"
+import { Stack, Tabs } from 'expo-router'
+import { Bus, Car, Home, Plus, Save, Search } from "lucide-react-native"
 import React from 'react'
 
 const _Layout = () => {
@@ -30,14 +30,7 @@ const _Layout = () => {
         headerShown: false
       }}
     />
-     <Tabs.Screen
-      name='TransportScreen'
-      options={{
-        title: 'TransportScreen',
-        tabBarIcon: ({color, size}) => <Car size={24} color={color}/>,
-        headerShown: false
-      }}
-    />
+
      <Tabs.Screen
       name='bookings'
       options={{
@@ -47,18 +40,18 @@ const _Layout = () => {
       }}
     />
      <Tabs.Screen
-      name='home'
+      name='routeDetail'    
       options={{
-        title: 'Home',
-        tabBarIcon: ({color, size}) => <Home size={24} color={color}/>,
+        title: 'RouteDetail',
+        tabBarIcon: ({color, size}) => <Bus size={24} color={color}/>,
         headerShown: false
       }}
     />
-     <Tabs.Screen
-      name='saved'
+    <Tabs.Screen
+      name='routesList'
       options={{
-        title: 'Saved',
-        tabBarIcon: ({color, size}) => <Save size={24} color={color}/>,
+        title: 'RoutesList',
+        tabBarIcon: ({color, size}) => <Bus size={24} color={color}/>,
         headerShown: false
       }}
     />
